@@ -1,9 +1,11 @@
 package com.instagram.service;
 
-import com.first_java.service.FacebookService;
-import com.first_java.service.FacebookServiceInterface;
+
+import java.util.List;
+
 import com.instagram.dao.Instagramdao;
 import com.instagram.dao.InstagramdaoInterface;
+import com.instagram.entity.InstagramUser;
 
 public class InstagramService implements InstagramServiceInterface{
 
@@ -14,20 +16,14 @@ public class InstagramService implements InstagramServiceInterface{
 		fd=new Instagramdao();
 	}
 	@Override
-	public void createProfileService() {
-		fd.addprofiledetails();
+	public int createProfileService(InstagramUser iu) throws Exception {
+		int i= fd.addprofiledetails(iu);
 		
-		System.out.println("Profile details added");
+		return i;
 		
 	}
 
-	@Override
-	public void editProfileService() {
-fd.updateprofiledetails();
 
-System.out.println("Profile details updated");
-		
-	}
 
 	@Override
 	public void uploadimageService() {
@@ -35,19 +31,6 @@ System.out.println("Profile details updated");
 	System.out.println("Image Uploaded");
 	}
 
-	@Override
-	public void viewProfile() {
-		fd.viewprofiledetails();
-		System.out.println("Profile is viewed");
-		
-	}
-
-	@Override
-	public void searchProfile() {
-		fd.searchprofiledetails();
-		System.out.println("Search profile details completed");
-		
-	}
 
 	@Override
 	public void commentService() {
@@ -62,5 +45,32 @@ System.out.println("Profile details updated");
 		System.out.println("Like details completed");
 		
 	}
+	@Override
+	public InstagramUser viewProfileService(InstagramUser iu)throws Exception {
+		InstagramUser uu= fd.viewprofiledetails(iu);
+		System.out.println("Profile is viewed");
+		return uu;
+	
+	}
+	@Override
+	public List<InstagramUser> searchProfileService(InstagramUser iu) throws Exception {
+		return fd.searchprofiledetails(iu);
+		
+	}
+	@Override
+	public int editProfileService(InstagramUser iu) throws Exception {
+		int uu= fd.updateprofiledetails(iu);
+		System.out.println("Profile is viewed");
+		 return uu;
+	
+		
+	}
+	@Override
+	public void demoservice() throws Exception {
+	fd.demo();
+		
+	}
 
-}
+	}
+
+
