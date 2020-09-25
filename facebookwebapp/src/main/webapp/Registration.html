@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+		
+		
+	function validate(){
+		
+		var v1=document.getElementById("n1").value;
+		var v2=document.getElementById("n2").value;
+		var v3=document.getElementById("n3").value;
+		var v4=document.getElementById("n4").value;
+		var v5=document.getElementById("n5").value;
+	}
+	function generateCaptcha(){
+		var v=parseInt((Math.random())*10000);
+		document.getElementById("result").innerHTML="<input type=text disabled id=nb value="+v+"><input type=button value=refresh onClick=generateCaptcha()><br> enter above no<input type=text id=cc1><input type=button value=validate onclick=captchavalidate()>";
+		
+	}
+	function captchavalidate(){
+		var v1=document.getElementById("nb").value;
+		var v2=document.getElementById("cc1").value;
+		if(v1==v2){
+			document.getElementById("bb").disabled=false;
+		}
+		
+		
+	}
+	
+	
+	function check_pass()
+	{
+	 var val=document.getElementById("n5").value;
+	
+	
+
+	  if(val.length==8)
+	  {
+			
+		   document.getElementById("demo").innerHTML="Very Weak";
+		  }
+
+	  if(val.length>8 && val.length<10 )
+
+	  {
+		   document.getElementById("demo").innerHTML="Weak";
+		  }
+	  
+	  if(val.length>10 && val.length<=20)
+	  {
+
+	   document.getElementById("demo").innerHTML="Good";
+	  }
+
+	
+
+	}
+	function resetSelection() {
+		document.getElementById("countrySelect").selectedIndex = 0;
+		document.getElementById("citySelect").selectedIndex = 0;
+		}
+	
+</script>
+</head>
+
+		<script type="text/javascript">
+		var citiesByState = {
+		Odisha: ["Bhubaneswar","Puri","Cuttack"],
+		Maharashtra: ["Mumbai","Pune","Nagpur"],
+		Kerala: ["kochi","Kanpur"]
+		}
+		
+		
+					function makeSubmenu(value)
+				}
+				{
+				if(value.length==0) document.getElementById("citySelect").innerHTML = "<option></option>";
+				else {
+				var citiesOptions = "";
+				for(cityId in citiesByState[value]) {
+				citiesOptions+="<option>"+citiesByState[value][cityId]+"</option>";
+				}
+				document.getElementById("citySelect").innerHTML = citiesOptions;
+				}
+				}
+				
+				function displaySelected()
+				{ 
+				var country = document.getElementById("countrySelect").value;
+				var city = document.getElementById("citySelect").value;
+				alert(country+"\n"+city);
+				}
+				
+				function resetSelection() {
+				document.getElementById("countrySelect").selectedIndex = 0;
+				document.getElementById("citySelect").selectedIndex = 0;
+				}
+				
+		</script>
+
+
+
+	<p align="center">Registration Page</p>
+	<center>
+	<form action="RegistrationServlet" method="">
+	
+										<body onload="resetSelection()">
+	<select id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
+					<option value="" disabled selected>Choose State</option>
+					<option>Odisha</option>
+					<option>Maharashtra</option>
+					<option>Kerala</option>
+					</select>
+					<select id="citySelect" size="1" >
+					<option value="" disabled selected>Choose City</option>
+					<option></option>
+					</select>
+					<button onclick="displaySelected()" required>show selected</button>
+					</body>
+					<body>
+					<br>
+					<br>
+							
+
+		
+		Name : <input type=text name=name id="n1" class="nn" required pattern="[^0-9][a-zA-Z]*" title="letters only"> <br>
+		Number : <input type=password name=number id="n2" required pattern="[0-9]{10}" title="10 numbers only"> <br>
+		Email : <input type=email name=email id="n3" required> <br>
+		
+		Password:<input type=password name=password id="n5" required  onBlur="check_pass() pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])">
+		<p id="demo"></val> <br>
+		Address : <input type=text name=address id="n4" required  onBlur="generateCaptcha()"> <br>
+		
+		<div id="result"></div>
+		
+		<input type=submit value=Register id=bb onclick="validate()" disabled> <br>
+	
+	</form>
+	</center>
+</body>
+</html>
